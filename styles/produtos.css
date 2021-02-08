@@ -1,0 +1,37 @@
+.produtos {
+    min-height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    gap: 20px;
+    position: relative;
+}
+
+.sobre {
+    padding-left: 5vw;
+    padding-right: 5vw; 
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contatos {
+    padding-left: 5vw;
+    padding-right: 5vw; 
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.redirect {
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+    margin-bottom: -35px;
+}
+
