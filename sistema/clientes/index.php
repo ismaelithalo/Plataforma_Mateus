@@ -36,7 +36,8 @@
               <a class="nav-link"  href="../produtos">Ger. Produtos</a>
               <a class="nav-link active" aria-current="page" href="#">Ger. Clientes</a>
               <a class="nav-link" href="../pedidos">Ger. Pedidos</a>
-              <a class="nav-link" href="#">Relatório</a>
+              <a class="nav-link"  href="../gastos">Gastos</a>
+              <a class="nav-link" href="../relatorio">Relatório</a>
               <a class="nav-link" href="../php/login/encerra_sessao.php" tabindex="-1" >Sair</a>
             </div>
           </div>
@@ -106,7 +107,7 @@
                   ?>    
 
                     <!-- Modal -->
-                    <div class="modal fade" id="edita_<?php echo $id_cliente; ?>" tabindex="-1" aria-labelledby="Cadastrar Item" aria-hidden="true">
+                    <div class="modal fade" id="edita_<?php echo $id_cliente; ?>" tabindex="-1" aria-labelledby="Editar Item" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                           <div class="modal-header">

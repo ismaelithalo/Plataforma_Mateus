@@ -81,6 +81,17 @@ CREATE TABLE IF NOT EXISTS `mateus_db`.`pedido` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `mateus_db`.`gastos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mateus_db`.`gastos` (
+  `idGasto` INT NOT NULL AUTO_INCREMENT,
+  `descricao` MEDIUMTEXT NULL,
+  `valor` DOUBLE NOT NULL,
+  `data` DATE NOT NULL,
+  PRIMARY KEY (`idGasto`))
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -36,7 +36,8 @@
               <a class="nav-link"  href="../produtos">Ger. Produtos</a>
               <a class="nav-link " href="../clientes">Ger. Clientes</a>
               <a class="nav-link active" aria-current="page" href="#">Ger. Pedidos</a>
-              <a class="nav-link" href="#">Relatório</a>
+              <a class="nav-link"  href="../gastos">Gastos</a>
+              <a class="nav-link" href="../relatorio">Relatório</a>
               <a class="nav-link" href="../php/login/encerra_sessao.php" tabindex="-1" >Sair</a>
             </div>
           </div>
@@ -65,7 +66,15 @@
       if (isset($_GET['falta']))
       echo "<div class='alert alert-danger' role='alert' style='padding-left: 5vw;'>
                 Não foi possível realizar o pedido pois o produto: '".$_GET['falta']." - ".$_GET['comp']."' está sem estoque.
-            </div>"
+            </div>";
+      if (isset($_GET['falta1']))
+      echo "<div class='alert alert-danger' role='alert' style='padding-left: 5vw;'>
+                Não foi possível realizar o pedido pois o produto: '".$_GET['falta1']." - ".$_GET['comp']."' está sem estoque suficiente.
+            </div>";
+      if (isset($_GET['sel']))
+      echo "<div class='alert alert-danger' role='alert' style='padding-left: 5vw;'>
+                Não foi possível realizar o pedido pois a quantidade de um dos produtos selecionados não foi especificada.
+            </div>";
       ?>
 
       <div class="tabela table-responsive" style="padding-left: 5vw; padding-right: 5vw;">
@@ -234,22 +243,38 @@
                 <div class="form-group row">
                     <label for="produtos" class="col-sm-2 col-form-label">Produtos</label>
                     <div class="col-sm-8" style="margin-left: 13px; border:2px solid #ccc; height: 100px; overflow-y: scroll;">
-                        
-                        <?php
-                            $sql = "SELECT * FROM `produto` WHERE 1";
-                            $resultado = mysqli_query($conn, $sql);
-                            if($resultado){
-                                while($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-                                $id_produto = $registros['idProduto'];
-                                $nome = $registros['nome'];
-                                $marca = $registros['marca'];
-                                $preco = $registros['precoVenda'];
-                                echo '<input name="produtos[]" type="checkbox" value="'.$id_produto.'"/> '.$nome.' - '.$marca.' - R$'.$preco.'<br />';
-                                }
-                            }              
-                        ?>
+                      <table>
+                          <thead>
+                            <tr>
+                              <th style="width: 25px;"></th>                                  
+                              <th style="min-width: 200px;">Produto</th>                                  
+                              <th >Qtd</th>                                  
+                            </tr>
+                          </thead>
+                          
+                          <tbody>
+                            <?php
+                              $sql = "SELECT * FROM `produto` WHERE 1";
+                              $resultado = mysqli_query($conn, $sql);
+                              if($resultado){
+                                  while($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+                                  $id_produto = $registros['idProduto'];
+                                  $nome = $registros['nome'];
+                                  $marca = $registros['marca'];
+                                  $preco = $registros['precoVenda'];
+                                    
+                                    echo '<tr class="table-light">';
+                                    echo '<td><input name="produtos[]" type="checkbox" value="'.$id_produto.'"/></td>';
+                                    echo '<td>'.$nome.' - '.$marca.' - R$'.$preco.'</td>';
+                                    echo '<td><input name="'.$id_produto.'" type="number" min="0" value="0" style="width: 40px; height: 21px"/></td>';
+                                    echo '</tr>';
+                                  
+                                  }
+                              }              
+                          ?>
+                          <tbody>
+                      </table>
                     </div>
-                
                 </div>
 
                 <div class="form-group row">

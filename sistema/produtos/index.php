@@ -36,7 +36,8 @@
               <a class="nav-link active" aria-current="page" href="#">Ger. Produtos</a>
               <a class="nav-link" href="../clientes">Ger. Clientes</a>
               <a class="nav-link" href="../pedidos">Ger. Pedidos</a>
-              <a class="nav-link" href="#">Relatório</a>
+              <a class="nav-link"  href="../gastos">Gastos</a>
+              <a class="nav-link" href="../relatorio">Relatório</a>
               <a class="nav-link" href="../php/login/encerra_sessao.php" tabindex="-1" >Sair</a>
             </div>
           </div>
