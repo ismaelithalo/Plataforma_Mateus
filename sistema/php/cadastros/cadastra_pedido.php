@@ -1,6 +1,16 @@
 <?php
 require_once('../conecta_db.php');
 
+
+if (!isset($_POST['cliente'])) {
+    header("Location: ../../pedidos/?cliente=0");
+    exit;
+}
+else if (!isset($_POST['produtos'])) {
+    header("Location: ../../pedidos/?produto=0");
+    exit;
+}
+
 $cliente = $_POST['cliente'];
 $valor = $_POST['valor'];
 $detalhes = $_POST['detalhes'];

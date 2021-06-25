@@ -17,10 +17,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link href="../styles/general.css" rel="stylesheet" type="text/css" media="all">
-    <link href="../styles/footer.css" rel="stylesheet" type="text/css" media="all">
-
 </head>
 
 <body>
@@ -131,13 +127,13 @@
                               <div class="form-group row">
                                 <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                                 <div class="col-sm-10">
-                                  <input type="name" class="form-control" id="nome" name="nome" value="<?php echo $nome; ?>">
+                                  <input type="name" required class="form-control" id="nome" name="nome" value="<?php echo $nome; ?>">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="marca" class="col-sm-2 col-form-label">Marca</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="marca" name="marca" value="<?php echo $marca; ?>">
+                                  <input type="text" required class="form-control" id="marca" name="marca" value="<?php echo $marca; ?>">
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -145,7 +141,7 @@
                                 <div class="col-sm-10">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">R$</span>
-                                  <input type="text" class="form-control" id="preco" name="preco" value="<?php echo $preco; ?>">
+                                  <input type="number" required step="0.01" class="form-control" id="preco" name="preco" value="<?php echo $preco; ?>">
                                 </div>
                                 </div>
                               </div>
@@ -154,14 +150,14 @@
                                 <div class="col-sm-10">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">R$</span>
-                                  <input type="text" class="form-control" id="preco_v" name="preco_v" value="<?php echo $preco_v; ?>">
+                                  <input type="number" required step="0.01" class="form-control" id="preco_v" name="preco_v" value="<?php echo $preco_v; ?>">
                                 </div>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="quantidade" class="col-sm-2 col-form-label">Quantidade</label>
                                 <div class="col-sm-10">
-                                  <input type="number" class="form-control" id="quantidade" name="quantidade" value="<?php echo $quantidade; ?>">
+                                  <input type="number" required class="form-control" id="quantidade" name="quantidade" value="<?php echo $quantidade; ?>">
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -209,19 +205,19 @@
                 <div class="form-group row">
                   <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                   <div class="col-sm-10">
-                    <input type="name" class="form-control" id="nome" name="nome">
+                    <input type="name" required class="form-control" id="nome" name="nome">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="marca" class="col-sm-2 col-form-label">Marca</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="marca" name="marca">
+                    <input type="text" required class="form-control" id="marca" name="marca">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="imagem" class="col-sm-2 col-form-label">Imagem</label>
                   <div class="col-sm-10">
-                    <input name="imagem" type="file" id="imagem"/>
+                    <input name="imagem" required type="file" accept="image/png, image/jpeg, image/jpg" id="imagem"/>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -229,7 +225,7 @@
                   <div class="col-sm-10">
                     <div class="input-group-prepend">
                       <span class="input-group-text">R$</span>
-                    <input type="text" class="form-control" id="preco" name="preco">
+                    <input type="number" required step="0.01" class="form-control" id="preco" name="preco">
                   </div>
                   </div>
                 </div>
@@ -238,14 +234,14 @@
                   <div class="col-sm-10">
                     <div class="input-group-prepend">
                       <span class="input-group-text">R$</span>
-                    <input type="text" class="form-control" id="preco_v" name="preco_v">
+                    <input type="number" required step="0.01" class="form-control" id="preco_v" name="preco_v">
                   </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="quantidade" class="col-sm-2 col-form-label">Quantidade</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" id="quantidade" name="quantidade">
+                    <input type="number" required class="form-control" id="quantidade" name="quantidade">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -264,5 +260,17 @@
         </div>
       </div>
 
+      <style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
 </body>

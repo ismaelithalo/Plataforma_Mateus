@@ -1,8 +1,8 @@
 <?php
     $servidor = "localhost";
     $usuario = "root";
-    $senha = "";
-    $dbname = "mateus_db";    
+    $senha = "meuroot";
+    $dbname = "plataformamateus";    
 
     $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
     

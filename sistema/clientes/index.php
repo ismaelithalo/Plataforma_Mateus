@@ -17,14 +17,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link href="../styles/general.css" rel="stylesheet" type="text/css" media="all">
-    <link href="../styles/footer.css" rel="stylesheet" type="text/css" media="all">
-
 </head>
 
 <body>
-    
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Administração</a>
@@ -123,25 +118,25 @@
                               <div class="form-group row">
                                 <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                                 <div class="col-sm-10">
-                                  <input type="name" class="form-control" id="nome" name="nome" value="<?php echo $nome; ?>">
+                                  <input type="name" required class="form-control" id="nome" name="nome" value="<?php echo $nome; ?>">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="endereco" class="col-sm-2 col-form-label">Endereço</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="endereco" name="endereco" value="<?php echo $endereco; ?>">
+                                  <input type="text" required class="form-control" id="endereco" name="endereco" value="<?php echo $endereco; ?>">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="telefone" name="telefone" value="<?php echo $telefone; ?>">
+                                  <input type="text" required class="form-control" id="telefone" name="telefone" value="<?php echo $telefone; ?>">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="cpf" class="col-sm-2 col-form-label">CPF</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="cpf" name="cpf" value="<?php echo $cpf; ?>">
+                                  <input type="text" required class="form-control" id="cpf" name="cpf" value="<?php echo $cpf; ?>">
                                 </div>
                               </div>
 
@@ -183,25 +178,25 @@
                 <div class="form-group row">
                   <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                   <div class="col-sm-10">
-                    <input type="name" class="form-control" id="nome" name="nome">
+                    <input type="name" required class="form-control" id="nome" name="nome">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="endereco" class="col-sm-2 col-form-label">Endereço</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="endereco" name="endereco">
+                    <input type="text" required class="form-control" id="endereco" name="endereco">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="telefone" name="telefone">
+                    <input type="text" required class="form-control" id="telefone" name="telefone">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="cpf" class="col-sm-2 col-form-label">CPF</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="cpf" name="cpf">
+                    <input type="text" required class="form-control" id="cpf" name="cpf">
                   </div>
                 </div>
 
