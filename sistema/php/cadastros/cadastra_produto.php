@@ -17,7 +17,7 @@ $extensao = strtolower ( $extensao );
 if ( strstr ( '.jpg;.jpeg;.gif;.png', $extensao ) ) {
     $novoNome = $nome.'-'.uniqid ( time () ) . '.' . $extensao;
     $destino = "sistema/imagens/".$novoNome;
-    move_uploaded_file( $arquivo_tmp, $_SERVER['DOCUMENT_ROOT']."/Mateus"."/".$destino);
+    move_uploaded_file( $arquivo_tmp, $_SERVER['DOCUMENT_ROOT']."/Plataforma_Mateus"."/".$destino);
 }
 
 $sql = "INSERT INTO `produto`(`idProduto`, `nome`, `marca`, `imagem`, `precoCompra`, `precoVenda`, `quantidade`, `detalhes`) VALUES (NULL,'$nome','$marca','$destino','$preco','$preco_v','$quantidade','$detalhes')";
