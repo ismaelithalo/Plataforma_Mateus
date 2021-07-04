@@ -14,11 +14,12 @@ require_once('../php/conecta_db.php');
   <title>Mateus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
@@ -27,6 +28,27 @@ require_once('../php/conecta_db.php');
 
 <body>
 
+  <style>
+      
+      .sec-titles {
+        margin-top: 5vh;
+        margin-bottom: 3vh;
+        background-color: #a3a3a3 !important;
+        padding-left: 20px;
+      }
+      .sec-titles-text {
+          font-size: 1.2rem;
+      }
+      .grafico {
+        width: 100%;
+        /* height:60vh; */
+      }
+      .grafico-section {
+        width: 70vw;
+      }
+
+    </style>
+  
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Administração</a>
@@ -46,7 +68,6 @@ require_once('../php/conecta_db.php');
     </div>
   </nav>
 
-
   <!-- Titulo de seção -->
   <section class="py-4 bg-dark text-white sec-title" id="sobre">
     <div class="container">
@@ -57,35 +78,90 @@ require_once('../php/conecta_db.php');
       </div>
     </div>
   </section>
-
-  <h1 style="margin: 5px 10px;">Ranking do Mês</h1>
-
-  <div style="justify-content: center; display: flex;">
-    <div style="width: 600px; height: 540px;">
-      <canvas id="balanco-lucros"></canvas>
+  
+  <!-- Titulo de seção -->
+  <section class="py-4 bg-dark text-white sec-titles" id="sobre">
+        <div class="container">
+          <div class="row">
+            <h4 class="sec-titles-text">Ranking do Mês</h4>
+          </div>
+        </div>
+      </section>
+      <!--  -->
+      
+      
+      
+      
+  
+  <!-- Titulo de seção -->
+  <section class="py-4 bg-dark text-white sec-titles" id="sobre">
+        <div class="container">
+          <div class="row">
+            <h4 class="sec-titles-text">Balanço de Gastos</h4>
+          </div>
+        </div>
+      </section>
+      <!--  -->
+      
+  <!-- <div style="justify-content: center; display: flex;"> -->
+  <div class="container-fluid">
+    <div class="row" style="justify-content: center; display: flex;">
+      <form method="GET" action="./index.php">
+      
+        <div class="form-group row">
+          <label for="campoano" class="col-sm-4 col-form-label">Insira o ano</label>
+          <div class="col-sm-10">
+            <div class="input-group-prepend">
+            <input type="number" class="form-control" id="campoano" placeholder="Ex. 2021" name="ano" required value="<?php if(isset($_GET['ano'])) echo $_GET['ano']; ?>">
+            <button type="submit" class="btn btn-secondary" style="margin-left: 10px;">Pesquisar</button>
+            </div>
+          </div>
+        </div>
+      
+      </form>
     </div>
+    <div class="row" style="justify-content: center; display: flex;">
+      <div class="grafico-section">
+        <div class="grafico">
+          <canvas id="balanco-lucros"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
 
     <?php
-    $sql = "SELECT * FROM `pedido` WHERE 1";
-    $resultado = mysqli_query($conn, $sql);
-    $vendas = array();
-    if ($resultado) {
-      while ($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-        $arr = array('data' => $registros['dataPedido'], 'valor' => $registros['valor']);
-        $vendas[] = json_encode($arr);
+    
+      if(!isset($_GET['ano'])) {
+        $sql1 = "SELECT * FROM `pedido` WHERE YEAR(dataPedido) = 2021";
+        $sql2 = "SELECT * FROM `gastos` WHERE YEAR(data) = 2021";
       }
-      $vendas = json_encode($vendas);
-    }
-    $sql = "SELECT * FROM `gastos` WHERE 1";
-    $resultado = mysqli_query($conn, $sql);
-    $gastos = array();
-    if ($resultado) {
-      while ($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-        $arr = array('data' => $registros['data'], 'valor' => $registros['valor']);
-        $gastos[] = json_encode($arr);
+      else {
+        $ano = $_GET['ano'];
+        $sql1 = "SELECT * FROM `pedido` WHERE YEAR(dataPedido) = $ano";
+        $sql2 = "SELECT * FROM `gastos` WHERE YEAR(data) = $ano";
       }
-      $gastos = json_encode($gastos);
-    }
+      
+      $resultado = mysqli_query($conn, $sql1);
+      $vendas = array();
+      if ($resultado) {
+        while ($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+          $arr = array('data' => $registros['dataPedido'], 'valor' => $registros['valor']);
+          $vendas[] = json_encode($arr);
+        }
+        $vendas = json_encode($vendas);
+      }
+      
+      $resultado = mysqli_query($conn, $sql2);
+      $gastos = array();
+      if ($resultado) {
+        while ($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+          $arr = array('data' => $registros['data'], 'valor' => $registros['valor']);
+          $gastos[] = json_encode($arr);
+        }
+        $gastos = json_encode($gastos);
+      }
     ?>
 
     <script>
