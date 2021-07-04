@@ -1,8 +1,13 @@
 <?php
+    // $servidor = "localhost";
+    // $usuario = "root";
+    // $senha = "meuroot";
+    // $dbname = "plataformamateus";  
+    
     $servidor = "localhost";
     $usuario = "root";
-    $senha = "meuroot";
-    $dbname = "plataformamateus";    
+    $senha = "";
+    $dbname = "mateus_db";   
 
     $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
     
