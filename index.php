@@ -48,14 +48,14 @@
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://dummyimage.com/1920x600/d946b7/fff" id="img-car-1" class="d-block w-100 banner" alt="...">
+            <img src="imagens/MSO-banner-1.png" id="img-car-1" class="d-block w-100 banner" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="https://dummyimage.com/1920x600/465adb/fff" id="img-car-2" class="d-block w-100" alt="...">
+            <img src="imagens/MSO-banner-2.png" id="img-car-2" class="d-block w-100" alt="...">
           </div>
-          <div class="carousel-item">
+          <!-- <div class="carousel-item">
             <img src="https://dummyimage.com/1920x600/03dffc/fff" id="img-car-3" class="d-block w-100" alt="...">
-          </div>
+          </div> -->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -72,7 +72,7 @@
       <section class="py-4 bg-dark text-white sec-title" id="sobre">
         <div class="container">
           <div class="row">
-            <h4 class="sec-title-text">Nome da empresa</h4>
+            <h4 class="sec-title-text">MSO Info Tecnologia</h4>
           </div>
         </div>
       </section>
@@ -81,7 +81,7 @@
       <section class="container-fluid sobre">
         <div class="row">
           <div class="col-md">
-            <img src="https://dummyimage.com/800x600/03dffc/fff" class="d-block w-100" alt="...">
+            <img src="imagens/MSO-8x6.png" class="d-block w-100" alt="...">
           </div>
           <div class="col-md">
             <p style="margin-top: 25px;">
@@ -103,55 +103,30 @@
       <!--  -->
 
       <section class="produtos">
+      
+        <?php
+          require_once('sistema/php/conecta_db.php');
+          $sql = "SELECT * FROM `produto` WHERE 1 LIMIT 10";
+          $resultado = mysqli_query($conn, $sql);
+          if($resultado){
+              while($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
 
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-    
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-    
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
+              $nome = $registros['nome'];
+              $marca = $registros['marca'];
+              $imagem = $registros['imagem'];
+              $preco_v = $registros['precoVenda'];
+              $detalhes = $registros['detalhes'];
+              
+              echo '<div class="card" style="width: 18rem;">
+                    <img src="'.$imagem.'" class="card-img-top" alt="'.$nome.'">
+                      <div class="card-body">
+                      <p class="card-text"><b>'.$nome.' - '.$marca.'</b><br/>'.$detalhes.'</p>
+                    </div>
+                  </div>';
+              
+            }
+          }
+        ?>
 
             <a href="produtos/" class="redirect link-dark"> Mais produtos</a>
 

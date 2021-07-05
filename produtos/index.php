@@ -56,56 +56,29 @@
 
       <section class="produtos">
 
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-    
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-    
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
+      <?php
+          require_once('../sistema/php/conecta_db.php');
+          $sql = "SELECT * FROM `produto` WHERE 1";
+          $resultado = mysqli_query($conn, $sql);
+          if($resultado){
+              while($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
 
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-              <img src="https://dummyimage.com/600x350/465adb/fff" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-
-            <a href="#" class="redirect link-dark"> Mais produtos</a>
+              $nome = $registros['nome'];
+              $marca = $registros['marca'];
+              $imagem = $registros['imagem'];
+              $preco_v = $registros['precoVenda'];
+              $detalhes = $registros['detalhes'];
+              
+              echo '<div class="card" style="width: 18rem;">
+                    <img src="../'.$imagem.'" class="card-img-top" alt="'.$nome.'">
+                      <div class="card-body">
+                      <p class="card-text"><b>'.$nome.' - '.$marca.'</b><br/>'.$detalhes.'</p>
+                    </div>
+                  </div>';
+              
+            }
+          }
+        ?>
 
       </section>
 
