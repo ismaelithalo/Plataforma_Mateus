@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `mateus_db`.`pedido` (
   `valor` DOUBLE NOT NULL,
   `detalhes` MEDIUMTEXT NULL,
   `dataPedido` DATE NOT NULL,
+  `quantidades` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`idPedido`),
 
   INDEX `Ped_Cliente_idx` (`idCliente` ASC),

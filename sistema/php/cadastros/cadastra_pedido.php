@@ -31,6 +31,8 @@ foreach ($produtos as $id) {
 date_default_timezone_set('America/Sao_Paulo');
 $data = date('Y-m-d');
 
+$quantidades = array();
+
 foreach ($produtos as $id) {
     $req = "SELECT * FROM `produto` WHERE `idProduto` = $id";
     $resultado = mysqli_query($conn, $req);
@@ -52,16 +54,19 @@ foreach ($produtos as $id) {
                     }
                     
                     else {
+                        array_push($quantidades, $_POST[$id]);
                         $qtd = $quantidade - $_POST[$id];
                         $req2 = "UPDATE `produto` SET `quantidade`= $qtd WHERE `idProduto` = $id";
                         $query = mysqli_query($conn, $req2);
-                        $detalhes = $detalhes."\n O foram pedidas ".$_POST[$id]." unidades do produto ".$nome." - ".$marca;
+                        $detalhes = $detalhes."\n Foram pedidas ".$_POST[$id]." unidades do produto ".$nome." - ".$marca."; ";
                     }
                 }
             }
 }
 
-$sql = "INSERT INTO `pedido`(`idPedido`, `idProdutos`, `idCliente`, `valor`, `detalhes`, `dataPedido`) VALUES (NULL,'$produtos_lista','$cliente','$valor','$detalhes','$data')";
+$quantidades_lista = implode(",", $quantidades);
+
+$sql = "INSERT INTO `pedido`(`idPedido`, `idProdutos`, `idCliente`, `valor`, `detalhes`, `dataPedido`,`quantidades`) VALUES (NULL,'$produtos_lista','$cliente','$valor','$detalhes','$data','$quantidades_lista')";
 // echo $sql.'<br><br>';
 
 $query = mysqli_query($conn, $sql);

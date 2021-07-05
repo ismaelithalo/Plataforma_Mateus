@@ -46,13 +46,16 @@ require_once('../php/conecta_db.php');
       .grafico-section {
         width: 70vw;
       }
+      .form-ano {
+        margin: 0px 0px 0px 0px !important;
+      }
 
     </style>
   
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Administração</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -73,7 +76,7 @@ require_once('../php/conecta_db.php');
     <div class="container">
       <div class="row">
         <div class="col">
-          <h4 class="sec-title-text">Relatórios</h4>
+          <h4 class="sec-title-text">Relatório</h4>
         </div>
       </div>
     </div>
@@ -83,16 +86,125 @@ require_once('../php/conecta_db.php');
   <section class="py-4 bg-dark text-white sec-titles" id="sobre">
         <div class="container">
           <div class="row">
-            <h4 class="sec-titles-text">Ranking do Mês</h4>
+            <h4 class="sec-titles-text">Ranking Mensal - Produtos</h4>
           </div>
         </div>
       </section>
       <!--  -->
+      <div class="container-fluid">
       
+      <div class="row form-ano" style="justify-content: center; display: flex;" >
+      <form method="GET" action="./index.php">
       
+        <div class="form-group row ">
+          <label for="campoano" class="col-sm-8 col-form-label">Insira o ano e o mês</label>
+          <div class="col-sm-10">
+            <div class="input-group-prepend">
+            <input type="text" class="form-control" id="campoanomes" placeholder="Ex. 2021-05" name="ano_mes" required value="<?php if(isset($_GET['ano_mes'])) echo $_GET['ano_mes']; ?>">
+            <button type="submit" class="btn btn-secondary" style="margin-left: 10px;">Pesquisar</button>
+            </div>
+          </div>
+        </div>
       
+      </form>
+    </div>
+    
       
-  
+      <div class="tabela table-responsive" style="padding-left: 5vw; padding-right: 5vw;">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Valor Compra</th>
+              <th scope="col">Valor Venda</th>
+              <th scope="col"> Nº Venda(s)</th>
+              <th scope="col">Receita Total</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <?php
+            
+            if(!isset($_GET['ano_mes'])) {
+              $sql1 = "SELECT * FROM `pedido` WHERE YEAR(dataPedido) = 2021 AND MONTH(dataPedido) = 1";
+            }
+            else {
+              $day = explode("-", $_GET['ano_mes']);
+              $ano = $day[0];
+              $mes = $day[1];
+              $sql1 = "SELECT * FROM `pedido` WHERE YEAR(dataPedido) = $ano AND MONTH(dataPedido) = $mes";
+            }
+            
+            $produtos = array();
+            
+            $resultado = mysqli_query($conn, $sql1);
+            if ($resultado) {
+              while ($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+
+                $id_produtos = explode(",",$registros['idProdutos']);
+                $quantidades = explode(",",$registros['quantidades']);
+                
+                for ($i=0; $i < sizeof($id_produtos); $i++) {
+                  $pos = false;
+                  if(!empty($produtos))
+                    $pos = array_search($id_produtos[$i], array_column($produtos, "id"));   
+                    
+                  if($pos === false) {
+                      array_push($produtos, array(
+                        ('id') => $id_produtos[$i],
+                        ('qtd') => $quantidades[$i]
+                      ));
+                    }
+                  else {
+                    $produtos[$pos]['qtd'] = $produtos[$pos]['qtd'] + $quantidades[$i];
+                  }
+                }
+              }
+            }
+            
+            usort($produtos, function($a, $b) {
+                return $a['qtd'] > $b['qtd'] ? -1 : 1;
+            });
+            $produtos = array_slice($produtos, 0, 25);
+            
+            foreach ($produtos as $produto) {
+              // print_r($produto);
+              $sql = "SELECT * FROM `produto` WHERE `idProduto` = $produto[id]";
+              
+              $resultado = mysqli_query($conn, $sql);
+              if ($resultado) {
+                while ($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+                  $receita = ($registros['precoVenda'] - $registros['precoCompra'])*$produto['qtd'];
+                  
+                  echo '<tr class="table-light">';
+                  echo '<td>'.$registros['nome'].' - '.$registros['marca'].'</td>';
+                  $registros['precoCompra']= strval($registros['precoCompra']);
+                  if (strpos($registros['precoCompra'], '.'))
+                    echo '<td>R$ ' . str_replace('.', ',', $registros['precoCompra']) . '</td>';
+                  else
+                    echo '<td>R$ ' . $registros['precoCompra'] . ',00</td>';
+                  $registros['precoVenda']= strval($registros['precoVenda']);
+                  if (strpos($registros['precoVenda'], '.'))
+                    echo '<td>R$ ' . str_replace('.', ',', $registros['precoVenda']) . '</td>';
+                  else
+                    echo '<td>R$ ' . $registros['precoVenda'] . ',00</td>';
+                  echo '<td>'.$produto['qtd'].'</td>';
+                  $receita= strval($receita);
+                  if (strpos($receita, '.'))
+                    echo '<td>R$ ' . str_replace('.', ',', $receita) . '</td>';
+                  else
+                    echo '<td>R$ ' . $receita . ',00</td>';
+                  echo '</tr>';
+                }
+              }
+            }
+            
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+      
   <!-- Titulo de seção -->
   <section class="py-4 bg-dark text-white sec-titles" id="sobre">
         <div class="container">
