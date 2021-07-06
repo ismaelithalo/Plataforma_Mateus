@@ -121,22 +121,8 @@ require_once('../php/conecta_db.php');
               $adrCliente = $registros1['endereco'];
             }
 
-            $produtos_id_str = $registros['idProdutos'];
-            $produtos_id = explode(",", $produtos_id_str);
-            $produtos_arr = [];
-
-            foreach ($produtos_id as $id) {
-              $req1 = "SELECT `nome` FROM `produto` WHERE `idProduto` = $id";
-              $resultado2 = mysqli_query($conn, $req1);
-
-              if ($resultado2) {
-                $registros2 = mysqli_fetch_array($resultado2, MYSQLI_ASSOC);
-                array_push($produtos_arr, $registros2['nome']);
-              }
-            }
-
-            $produtos = implode(", ", $produtos_arr);
-
+            $produtos = $registros['nome_produto'];
+            
             $valor = $registros['valor'];
             $detalhes = $registros['detalhes'];
             $dataPedido = $registros['dataPedido'];

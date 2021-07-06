@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `mateus_db`.`pedido` (
   `idProdutos` VARCHAR(90) NOT NULL,
   `idCliente` INT NOT NULL,
   `valor` DOUBLE NOT NULL,
+  `nome_produto` MEDIUMTEXT NULL,
   `detalhes` MEDIUMTEXT NULL,
   `dataPedido` DATE NOT NULL,
   `quantidades` VARCHAR(90) NOT NULL,

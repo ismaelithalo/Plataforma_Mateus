@@ -18,6 +18,8 @@ $detalhes = $_POST['detalhes'];
 $produtos = $_POST['produtos'];
 $produtos_lista = implode(",", $produtos);
 
+$nome_produto = "";
+
 foreach ($produtos as $id) {
     if ($_POST[$id] == 0) {
         header("Location: ../../pedidos/?sel=0");
@@ -59,6 +61,7 @@ foreach ($produtos as $id) {
                         $req2 = "UPDATE `produto` SET `quantidade`= $qtd WHERE `idProduto` = $id";
                         $query = mysqli_query($conn, $req2);
                         $detalhes = $detalhes."\n Foram pedidas ".$_POST[$id]." unidades do produto ".$nome." - ".$marca."; ";
+                        $nome_produto = $nome_produto.$nome." - ".$marca."; ";
                     }
                 }
             }
@@ -66,7 +69,7 @@ foreach ($produtos as $id) {
 
 $quantidades_lista = implode(",", $quantidades);
 
-$sql = "INSERT INTO `pedido`(`idPedido`, `idProdutos`, `idCliente`, `valor`, `detalhes`, `dataPedido`,`quantidades`) VALUES (NULL,'$produtos_lista','$cliente','$valor','$detalhes','$data','$quantidades_lista')";
+$sql = "INSERT INTO `pedido`(`idPedido`, `idProdutos`, `idCliente`, `valor`,`nome_produto`, `detalhes`, `dataPedido`,`quantidades`) VALUES (NULL,'$produtos_lista','$cliente','$valor','$nome_produto','$detalhes','$data','$quantidades_lista')";
 // echo $sql.'<br><br>';
 
 $query = mysqli_query($conn, $sql);
