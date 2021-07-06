@@ -110,7 +110,7 @@
       
         <?php
           require_once('sistema/php/conecta_db.php');
-          $sql = "SELECT * FROM `produto` WHERE 1 LIMIT 10";
+          $sql = "SELECT * FROM `produto` WHERE 1 ORDER BY `idProduto` DESC LIMIT 10";
           $resultado = mysqli_query($conn, $sql);
           if($resultado){
               while($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){

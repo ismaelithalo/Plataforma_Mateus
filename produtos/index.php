@@ -62,7 +62,7 @@
 
       <?php
           require_once('../sistema/php/conecta_db.php');
-          $sql = "SELECT * FROM `produto` WHERE 1";
+          $sql = "SELECT * FROM `produto` WHERE 1 ORDER BY `idProduto` DESC";
           $resultado = mysqli_query($conn, $sql);
           if($resultado){
               while($registros = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
