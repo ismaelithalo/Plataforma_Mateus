@@ -130,6 +130,7 @@
               
             }
           }
+        
         ?>
 
             <a href="produtos/" class="redirect link-dark"> Mais produtos</a>
@@ -226,6 +227,12 @@
       <button onclick="subir()" class="btn fa fa-angle-up" id="btn-back-top"></button>
       <script src="./scripts/btn-back-top.js"></script>
       <!--  -->
-
+      
 </body>
-
+</html>
+<?php 
+      if(isset($_GET['mail']))
+        echo '<script>window.onload = function () { 
+              alert("Mensagem enviada com sucesso!");}
+              </script>';
+  ?>
