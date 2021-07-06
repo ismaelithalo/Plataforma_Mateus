@@ -2,10 +2,10 @@
 
 <html lang="pt-BR">
 <head>
-    <title>Mateus</title>
+    <title>MSO Info Tecnologia</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+    <link rel="shortcut icon" href="imagens/icon.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -17,6 +17,10 @@
     <link href="./styles/produtos.css" rel="stylesheet" type="text/css" media="all">
     <link href="./styles/footer.css" rel="stylesheet" type="text/css" media="all">
     <link href="./styles/contato.css" rel="stylesheet" type="text/css" media="all">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
 </head>
 
@@ -72,7 +76,7 @@
       <section class="py-4 bg-dark text-white sec-title" id="sobre">
         <div class="container">
           <div class="row">
-            <h4 class="sec-title-text">MSO Info Tecnologia</h4>
+            <h4 class="sec-title-text">MSO INFO TECNOLOGIA</h4>
           </div>
         </div>
       </section>
@@ -148,39 +152,39 @@
                 <div class="main wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                     <div class="row">
                         <div class="col-lg-8 left">
-                            <h3>Send Message</h3>
+                            <h3>Entre em contato!</h3>
 
-                            <form>
+                            <form method="POST" action="sistema/php/mailer/envia.php">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                        <input type="text" class="form-control" placeholder="Seu nome" name="nome" id="nome">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="email" class="form-control" placeholder="Seu e-mail" name="email_user" id="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="5" id="comment" placeholder="Message"></textarea>
+                                    <textarea class="form-control" rows="5" id="comment" placeholder="Mensagem" name="texto" id="mensagem"></textarea>
                                 </div>
-                                <button class="btn btn-block" type="submit">Send Now!</button>
+                                <button class="btn btn-block" type="submit">Enviar</button>
                             </form>
                         </div>
                         <!-- Left -->
                         <div class="col-lg-4">
                             <div class="right">
-                                <h4>Contact Information</h4>
+                                <h4>Informações</h4>
                                 <div class="info d-flex align-items-center">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    <span>c - 165, Your Street Jaipur, <br>IN 91 554</span>
+                                    <span>Endereço<br>Complemento</span>
                                 </div>
                                 <div class="info d-flex align-items-center">
                                     <i class="fa fa-chrome" aria-hidden="true"></i>
-                                    <span>+1-456-456-7890
+                                    <span> +55 (61) 98667 5983
                                       </span>
                                 </div>
                                 <div class="info d-flex align-items-center">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <span>info@yourdomain.com
+                                    <span>email@mail.com
                                       </span>
                                 </div>
                                 <div class="social">

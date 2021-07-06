@@ -12,7 +12,7 @@
     margin-bottom: 15px;
 }
 .contact .heading h2 span {
-    color: #7035cf;
+    color: #33C0CC;
     font-weight: 300;
 }
 .contact .heading p {
@@ -45,7 +45,7 @@
     padding: 10px;
     border-radius: 5px;
     font-size: 15px;
-    background: linear-gradient(to right, rgba(114,96,206,1) 0%, rgba(70,96,241,1) 100%);
+    background-color: #33C0CC;
     color: #ffffff;
 }
 
@@ -53,7 +53,7 @@
     padding: 40px 60px;
 }
 .contact .main .right {
-    background:#5d5db7;
+    background:#33C0CC;
     background-size: cover;
     padding: 40px;
     color: #ffffff;

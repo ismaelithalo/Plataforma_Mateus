@@ -13,6 +13,7 @@ html {
 }
 .sec-title-text {
     font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
 }
 
 @media screen and (max-width:800px){
@@ -49,5 +50,5 @@ html {
     background-color: #2c2c2c;
  }
  #btn-back-top:hover {
-    background-color:#31beff;
+    background-color:#33C0CC;
  }
